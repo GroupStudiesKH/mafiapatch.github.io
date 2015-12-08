@@ -1,0 +1,48 @@
+.left-logo{
+	text-align: center;
+}
+
+.left-logo p{
+	text-align: left;
+	margin-left:70px;
+}
+
+.right-content-index{
+	height:100vh;
+}
+
+.right-content-index div .hidden{
+	height: calc(100vh / 3);
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+
+.right-content-index .people{
+	background-image: url('images/asskid1.jpg');
+}
+
+.right-content-index .profolio{
+	background-image: url('images/asskid2.jpg');
+}
+
+.right-content-index .contact{
+	background-image: url('images/asskid3.jpg');
+}
+
+.ui.move.reveal{
+	height: calc(100vh / 3);
+}
+
+.right-content-index h1{
+	text-align: center;
+	line-height: calc(100vh / 3);
+	color: #fff;
+}
+
+.gray_mask{
+	background-image: url('images/mask.png');
+	background-repeat: no-repeat;
+	background-size:cover;
+	height: calc(100vh / 3);
+	width: 100%;
+}
