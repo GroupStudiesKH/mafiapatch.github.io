@@ -80,6 +80,7 @@ p.person_description{
 	width: 2.5em;
 }
 
+
 @media (max-width: 767px) {
 	#person_intro{
 		padding: 0 15px 0 15px;
