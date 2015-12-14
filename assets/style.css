@@ -9,6 +9,7 @@ body{
 .left-logo p{
 	text-align: left;
 	margin-left:70px;
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
 .right-content-index{
@@ -23,18 +24,34 @@ body{
 
 .right-content-index .people{
 	background-image: url('images/asskid1.jpg');
+	background-position:center center;
 }
 
 .right-content-index .profolio{
 	background-image: url('images/asskid2.jpg');
+	background-position:center center;
 }
 
 .right-content-index .contact{
 	background-image: url('images/asskid3.jpg');
+	background-position:center center;
 }
 
 .ui.move.reveal{
 	height: calc(100vh / 3);
+}
+
+.ui.leaderboard.bird{
+	background-image: url('images/bird_header.jpg');
+	background-position:center center;
+	background-repeat: no-repeat;
+	background-size:cover;
+	overflow: hidden;
+	width: 100%;
+}
+
+p.person_description{
+	margin: 10px 0;
 }
 
 .right-content-index h1{
