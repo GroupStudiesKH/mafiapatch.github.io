@@ -70,8 +70,21 @@ p.person_description{
 	width: 100%;
 }
 
+#mobile_menu{
+	display: none;
+	box-shadow: none;
+}
+
+#mobile_menu .header a img{
+	width: 2.5em;
+}
+
 @media (max-width: 767px) {
 	#person_intro{
 		padding: 0 15px 0 15px;
+	}
+
+	#mobile_menu{
+		display: block;
 	}
 }
