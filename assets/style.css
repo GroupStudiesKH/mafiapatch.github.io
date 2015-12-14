@@ -4,6 +4,8 @@ body{
 
 .left-logo{
 	text-align: center;
+	width: 25%;
+	position: fixed;
 }
 
 .left-logo p{
@@ -66,4 +68,10 @@ p.person_description{
 	background-size:cover;
 	height: calc(100vh / 3);
 	width: 100%;
+}
+
+@media (max-width: 767px) {
+	#person_intro{
+		padding: 0 15px 0 15px;
+	}
 }
