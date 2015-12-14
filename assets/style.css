@@ -73,6 +73,7 @@ p.person_description{
 #mobile_menu{
 	display: none;
 	box-shadow: none;
+	margin-top: 10px;
 }
 
 #mobile_menu .header a img{
