@@ -89,4 +89,8 @@ p.person_description{
 	#mobile_menu{
 		display: block;
 	}
+
+	.case_meta{
+		margin-top: 10px !important;
+	}
 }
