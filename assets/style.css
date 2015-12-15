@@ -52,6 +52,15 @@ body{
 	width: 100%;
 }
 
+.ui.leaderboard.mafia{
+	background-image: url('images/mafia_header.jpg');
+	background-position:center center;
+	background-repeat: no-repeat;
+	background-size:cover;
+	overflow: hidden;
+	width: 100%;
+}
+
 p.person_description{
 	margin: 10px 0;
 }
