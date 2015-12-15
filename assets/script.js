@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$('.person').click(function() {
-		alert('test');
+		$('.person .gray_mask').transition('fade left');
 		window.location.href = 'bird.html';
 	});
 });
