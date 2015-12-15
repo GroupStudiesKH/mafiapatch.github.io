@@ -105,6 +105,19 @@ p.person_description{
 	width: 2.5em;
 }
 
+.mobile_person_choose{
+	border-bottom: 1px solid #ccc;
+}
+
+.mobile_person_choose a{
+	color: #333;
+}
+
+.mobile_person_choose a img{
+	margin: 10px 0 10px 0;
+}
+
+
 
 @media (max-width: 991px) {
 	#person_intro{
