@@ -61,6 +61,22 @@ body{
 	width: 100%;
 }
 
+img.choose_person{
+	width: 4em !important;
+	height: 4em !important;
+	margin: 1em;
+}
+
+#person_list .item{
+    padding: 10px;
+    cursor: pointer;
+}
+
+#person_list .item.active{
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
 p.person_description{
 	margin: 10px 0;
 }
