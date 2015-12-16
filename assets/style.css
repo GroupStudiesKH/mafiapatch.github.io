@@ -100,43 +100,46 @@ span.project_description{
 	color: #fff;
 }
 
-.left_menu_person{
+.left_menu{
 	height: 80px;
+	background-position:center center;
+	background-repeat: no-repeat;
+	background-size:inherit;
+	  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+
+.left_menu:hover{
+	height: 100px;
+}
+
+.left_menu h3:hover{
+	line-height: 100px;
+}
+
+.left_menu h3{
+	line-height: 80px;
+	color: #fff;
+	-webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+
+.lm_person{
 	background-image: url('images/asskid1.jpg');
-	background-position:center center;
-	background-repeat: no-repeat;
-	background-size:cover;
 }
 
-.left_menu_person h3{
-	line-height: 80px;
-	color: #fff;
-}
-
-.left_menu_project{
-	height: 80px;
+.lm_project{
 	background-image: url('images/asskid2.jpg');
-	background-position:center center;
-	background-repeat: no-repeat;
-	background-size:cover;
 }
 
-.left_menu_project h3{
-	line-height: 80px;
-	color: #fff;
-}
-
-.left_menu_contact{
-	height: 80px;
+.lm_contact{
 	background-image: url('images/asskid3.jpg');
-	background-position:center center;
-	background-repeat: no-repeat;
-	background-size:cover;
-}
-
-.left_menu_contact h3{
-	line-height: 80px;
-	color: #fff;
 }
 
 .gray_mask{
