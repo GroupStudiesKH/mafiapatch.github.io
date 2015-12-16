@@ -4,7 +4,7 @@ body{
 
 .left-logo{
 	text-align: center;
-	width: 25%;
+	width: 18.75%;
 	position: fixed;
 }
 
@@ -17,7 +17,7 @@ body{
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 25%;
+    width: 18.75%;
     text-align: center;
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
     font-size: 12px;
@@ -104,7 +104,7 @@ span.project_description{
 	height: 80px;
 	background-position:center center;
 	background-repeat: no-repeat;
-	background-size:inherit;
+	background-size:cover;
 	  -webkit-transition: all 0.5s ease;
      -moz-transition: all 0.5s ease;
        -o-transition: all 0.5s ease;
