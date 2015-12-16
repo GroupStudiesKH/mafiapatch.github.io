@@ -9,9 +9,18 @@ body{
 }
 
 .left-logo p{
-	text-align: left;
-	margin-left:70px;
+	text-align: center;
 	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+.left-logo .copyright{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 25%;
+    text-align: center;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 12px;
 }
 
 .right-content-index{
@@ -88,6 +97,45 @@ span.project_description{
 .right-content-index h1{
 	text-align: center;
 	line-height: calc(100vh / 3);
+	color: #fff;
+}
+
+.left_menu_person{
+	height: 80px;
+	background-image: url('images/asskid1.jpg');
+	background-position:center center;
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+
+.left_menu_person h3{
+	line-height: 80px;
+	color: #fff;
+}
+
+.left_menu_project{
+	height: 80px;
+	background-image: url('images/asskid2.jpg');
+	background-position:center center;
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+
+.left_menu_project h3{
+	line-height: 80px;
+	color: #fff;
+}
+
+.left_menu_contact{
+	height: 80px;
+	background-image: url('images/asskid3.jpg');
+	background-position:center center;
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+
+.left_menu_contact h3{
+	line-height: 80px;
 	color: #fff;
 }
 
