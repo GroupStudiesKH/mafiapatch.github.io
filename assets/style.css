@@ -169,7 +169,11 @@ span.project_description{
 }
 
 .mobile_person_choose a img{
-	margin: 10px 0 10px 0;
+	margin: 10px 0 10px 0
+}
+
+.contact_other{
+	padding: 0 10px  !important;
 }
 
 
