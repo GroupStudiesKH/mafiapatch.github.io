@@ -81,6 +81,10 @@ p.person_description{
 	margin: 10px 0;
 }
 
+span.project_description{
+	font-size: 12px;
+}
+
 .right-content-index h1{
 	text-align: center;
 	line-height: calc(100vh / 3);
