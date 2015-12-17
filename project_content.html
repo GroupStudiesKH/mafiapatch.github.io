@@ -1,3 +1,9 @@
+<script>
+  $('.list-item').click(function() {
+    $('.list-item').transition('scale');
+    setTimeout(function(){ $('.project_main').load("http://unnamed.taipei/badboss.html"); }, 2000);
+  });
+</script>
             <div class="card badboss list-item">
               <div class="image">
                 <img src="assets/images/work/badboss.jpg">
