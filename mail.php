@@ -14,7 +14,7 @@ $domain = "sandbox18191d042786489d8483f6dbbe361c3c.mailgun.org";
 # Make the call to the client.
 $result = $mgClient->sendMessage($domain, array(
     'from'    => $email,
-    'to'      => 'cch@unnamed.taipei',
+    'to'      => 'cch@unnamed.taipei,bird@gmail.com',
     'subject' => $nickname.'寄來的問題',
     'text'    => $content
 ));
