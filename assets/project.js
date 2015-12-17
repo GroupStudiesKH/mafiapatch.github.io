@@ -1,7 +1,9 @@
 $(document).ready(function() {
+	$('.project_main').load("http://unnamed.taipei/project_content.html");
 
-	$('.card.badboss').click(function() {
-		$('.project_main').transition('scale');
+	$('.list-item').click(function() {
+		$('.list-item').transition('scale');
+		$('.project_main').load("http://unnamed.taipei/badboss.html");
 	});
 
 });
