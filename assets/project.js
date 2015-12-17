@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-	$(".project_main").load("http://unnamed.taipei/project_main.html");
-
 	$('.back-btn').click(function() {
 		$('.project-data').transition({
 		    animation : 'scale',
