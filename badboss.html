@@ -1,6 +1,16 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $(".badboss-info").transition({animation : 'scale'});
+
+    $('.back-btn').click(function() {
+      $('.project-data').transition({
+          animation : 'scale',
+          onComplete  : function() {
+            $(".project_main").load("http://unnamed.taipei/project_main.html");
+          }
+      });
+    });
+    
   });
 </script>
 <script src="assets/project.js"></script>
