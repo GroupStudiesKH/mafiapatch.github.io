@@ -54,50 +54,14 @@
 
 
     <!--Header-->
-    <h1 class="ui header">Contact</h1>
-    <form class="ui form" action="http://140.124.93.88/unnamed/mail.php" method="post">
-      <h4 class="ui dividing header">有什麼問題？別害羞，告訴我們吧！</h4>
-      <div class="field">
-        <label>該如何稱呼？</label>
-          <div class="field">
-            <input type="text" name="nickname" placeholder="暱稱">
-          </div>
-      </div>
-      <div class="field">
-        <label>要回應到哪個信箱</label>
-        <div class="fields">
-          <input type="text" name="email" placeholder="E-mail">
-        </div>
-      </div>
-
-      <div class="field">
-        <label>想說些什麼？</label>
-        <textarea name="content"></textarea>
-      </div>
-
-      <button class="ui button" tabindex="0">送出！</button>
-    </form>
-    <br>
-    <div class="ui items">
-      <h3 class="ui header">您也可以透過以下方式</h3>
-      <div class="item">
-        <div class="content contact_other">
-          <div class="contact_description">
-            <p>比方說寄信到<br>
-              cch(at)unnamed.taipei<br>
-              在信中敘述您的問題，我們將會樂意接收及回應您的問題。</p>
-          </div>
-        </div>
-        <div class="content contact_other">
-          <div class="contact_description">
-            若是有些事情用文字難以形容，那就打通電話吧:<br>
-            0910610297(徐先生)
-          </div>
-        </div>
+    <div class="ui icon message">
+      <i class="checkmark icon"></i>
+      <div class="content">
+        <div class="header">成功</div>
+        <p>您的問題已經寄出，我們會盡快回應您。</p>
+        <script>setTimeout(function(){window.location.href = 'contact.html';},3000);</script>
       </div>
     </div>
-
-
 
       </div>
 

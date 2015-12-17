@@ -4,6 +4,17 @@ $(document).ready(function() {
 		window.location.href = 'bird.html';
 	});
 
+	$('.project').click(function() {
+		$('.person .gray_mask').transition('fade left');
+		window.location.href = 'project.html';
+	});
+
+	$('.contact').click(function() {
+		$('.person .gray_mask').transition('fade left');
+		window.location.href = 'contact.html';
+	});
+
+
 	$('#person_list .mafia').click(function() {
 		window.location.href = 'mafia.html';
 	});
