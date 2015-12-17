@@ -176,6 +176,10 @@ span.project_description{
 	padding: 0 10px  !important;
 }
 
+.contact_description{
+	font-size: 13px;
+}
+
 
 
 @media (max-width: 991px) {
