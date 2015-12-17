@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(window).load(function() {
 
 	$('.card.badboss').click(function() {
 		$('.list-item').transition({
