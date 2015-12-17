@@ -19,5 +19,5 @@ $result = $mgClient->sendMessage($domain, array(
     'text'    => $content
 ));
 
-echo "<script>window.history.back();</script>";
+echo "<script>window.location.href = 'http://unnamed.taipei/success.html';</script>";
 ?>
