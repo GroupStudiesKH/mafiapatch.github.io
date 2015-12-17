@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 	$('.profolio').click(function() {
 		$('.person .gray_mask').transition('fade left');
-		window.location.href = 'profolio.html';
+		window.location.href = 'project.html';
 	});
 
 	$('.contact').click(function() {
