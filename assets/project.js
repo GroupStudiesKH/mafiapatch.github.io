@@ -26,12 +26,14 @@ $(document).ready(function() {
 //img cycle
 
 $('document').ready(function() {
+	
     var $imgs = $('.project-data .card .image img'), current = 0;
     
     var nextImage = function() {
-        if (current >= $imgs.length) current = 0;
+        if (current >= $imgs.length/2){current = 0;};
         $imgs.eq(current++).fadeIn(function() {
             $(this).delay(3000).fadeOut(nextImage);
+            console.log(current);
         })
     };
     nextImage();
