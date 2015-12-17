@@ -1,10 +1,14 @@
 <script type="text/javascript">
     $(document).ready(function() {
       $('.cards').transition('scale');
+
+        $('.back-btn').click(function() {
+          $('.project_main').load("http://unnamed.taipei/project_content.html");
+        });
     });
 </script>
 <a class="back-btn">back</a>
-      <div class="ui one link stackable cards hidden">
+      <div class="ui one link stackable cards">
             <div class="card badboss">
               <div class="image">
                 <img src="assets/images/work/badboss.jpg">
