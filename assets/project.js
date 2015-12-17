@@ -1,14 +1,12 @@
 $(document).ready(function() {
 
-	$('.list-item').click(function() {
-
-		$('.list-item').transition({
-			animation  : 'scale',
-    		onComplete : function() {
-		      $('.project_main').load("http://unnamed.taipei/badboss.html");
-		    }
+	$('.card.badboss').click(function() {
+		$('.project_main').transition({
+		    animation : 'scale',
+		    onComplete  : function() {
+		      $(".project_main").load("http://unnamed.taipei/badboss.html");
+		  	}
 		});
-		
 	});
 
 });

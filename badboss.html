@@ -1,14 +1,10 @@
 <script type="text/javascript">
-    $(document).ready(function() {
-      $('.cards').transition('scale');
-
-        $('.back-btn').click(function() {
-          $('.project_main').load("http://unnamed.taipei/project_content.html");
-        });
-    });
+  $(document).ready(function() {
+    $('.badboss-info').transition({animation : 'scale'});
+  });
 </script>
-      <div class="ui one link stackable cards" style="display:none;">
-            <div class="card badboss">
+        <div class="ui one link cards badboss-info" style="display:none;">
+            <div class="card">
               <div class="image">
                 <img src="assets/images/work/badboss.jpg">
               </div>
@@ -28,6 +24,4 @@
                 </span>
               </div>
             </div>
-
-      </div>
-
+        </div>
