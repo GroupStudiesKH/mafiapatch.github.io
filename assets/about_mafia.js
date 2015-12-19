@@ -20,7 +20,7 @@ $(document).ready(function() {
 		  });
 	});
 
-	var $imgs = $('.about_mafia-info .card .image img'), current = 0;
+	var $imgs = $('.about_mafia-info .card .project-image img'), current = 0;
 	    
     var nextImage = function() {
         if (current >= $imgs.length){current = 0;};
