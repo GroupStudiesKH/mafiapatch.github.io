@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+    var host = "unnamed.taipei";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+
 	$('.person').click(function() {
 		$('.person .gray_mask').transition('fade left');
 		window.location.href = 'bird.html';
