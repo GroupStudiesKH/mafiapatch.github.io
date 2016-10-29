@@ -32,7 +32,7 @@
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
   <script type="text/javascript" src="js/gears_init.js"></script>
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&language=zh-TW&result_type=street_address&location_type=ROOFTOP"></script> 
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&language=zh-TW&result_type=street_address&location_type=ROOFTOP"></script> 
 <script type="text/javascript">
 // 瀏覽器支援 HTML5 定位方法
 if (navigator.geolocation) {
@@ -52,7 +52,7 @@ if (navigator.geolocation) {
                 break;
  
             case error.PERMISSION_DENIED://拒絕
-                alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
+                alert('記得允許手機的GPS定位功能喔!');
                 break;
  
             case error.UNKNOWN_ERROR:
@@ -73,7 +73,7 @@ if (navigator.geolocation) {
               alert("定位失敗請稍候再試");
         }
     }else{
-        alert("想要參加本活動，\n記得允許手機的GPS定位功能喔!");
+        alert("記得允許手機的GPS定位功能喔!");
     }
 }
  
