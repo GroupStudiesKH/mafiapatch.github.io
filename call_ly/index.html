@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>立委幫幫忙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+	<!--script src="js/less-1.3.3.min.js"></script-->
+	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="img/favicon.png">
+  
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/gears_init.js"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&language=zh-TW&result_type=street_address&location_type=ROOFTOP"></script> 
+<script type="text/javascript">
+// 瀏覽器支援 HTML5 定位方法
+if (navigator.geolocation) {
+ 
+    // HTML5 定位抓取
+    navigator.geolocation.getCurrentPosition(function(position) {
+        mapServiceProvider(position.coords.latitude, position.coords.longitude);
+    },
+    function(error) {
+        switch (error.code) {
+            case error.TIMEOUT:
+                alert('連線逾時');
+                break;
+ 
+            case error.POSITION_UNAVAILABLE:
+                alert('無法取得定位');
+                break;
+ 
+            case error.PERMISSION_DENIED://拒絕
+                alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
+                break;
+ 
+            case error.UNKNOWN_ERROR:
+                alert('不明的錯誤，請稍候再試');
+                break;
+        }
+    });
+ 
+} else { // 不支援 HTML5 定位
+ 
+    // 若支援 Google Gears
+    if (window.google && google.gears) {
+        try {
+              // 嘗試以 Gears 取得定位
+              var geo = google.gears.factory.create('beta.geolocation');
+              geo.getCurrentPosition(successCallback,errorCallback, { enableHighAccuracy: true,gearsRequestAddress: true });
+        } catch(e){
+              alert("定位失敗請稍候再試");
+        }
+    }else{
+        alert("想要參加本活動，\n記得允許手機的GPS定位功能喔!");
+    }
+}
+ 
+ 
+// 取得 Gears 定位發生錯誤
+function errorCallback(err) {
+    var msg = 'Error retrieving your location: ' + err.message;
+    alert(msg);
+}
+ 
+// 成功取得 Gears 定位
+function successCallback(p) {
+      mapServiceProvider(p.latitude, p.longitude);
+}
+ 
+// 顯示經緯度
+function mapServiceProvider(latitude, longitude) {
+      //alert("經緯度：" + latitude + ", " + longitude);
+
+            var latlng = new google.maps.LatLng(latitude,longitude);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            var district,county,formatted_address,format_county,county_if_viewport;
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                    	formatted_address=results[0].formatted_address;
+                        district=results[0].address_components[3].long_name;
+                        county=results[0].address_components[4].long_name;
+                        county_if_viewport=results[0].address_components[5].long_name;
+                        format_county=county.replace("台灣", "");
+                        	//start json parser
+							$.ajax({
+						        url: "data.json",
+						        crossDomain: true,  
+						        type: "GET",
+						        dataType: "json", 
+						       
+						        //如果連線成功        	   
+						        success: function(data) {			
+						            //原list中資料清除 				  
+						            $(".ly_list").empty(); 
+									 
+						            if(data.length==0){
+						                alert("找不到任何資料");
+						                return;
+						            }
+									 //alert(county_if_viewport);
+						            //依序加入取得之資料			 
+						            for(var i=0; i<data.length; i++){
+						            	if(data[i].county==format_county || data[i].county==county_if_viewport){
+						                var name = data[i].name;
+						                var party = data[i].party;
+						                var ly_district = data[i].district;
+						                var pic=data[i].avatar;
+										var address,contant_name;
+										    $.each(data[i].contacts, function(i, v) {
+										            address=v.address;
+										            tel=v.phone;
+										            tel_link="'tel:"+v.phone+"'";
+										            contant_name=v.name;
+										            return;
+										        });				
+
+										var d = '<div class="ly_list_item"><div class="ly_list_pic"><img src="'+pic+'"></div><div class="ly_list_name"><p>'+name+'</p></div><div class="ly_list_district">'+ly_district+'</div><div class="ly_list_party">'+party+'</div><a onclick="location.href=' + tel_link + '"><div class="ly_list_call"><img src="img/tel.png"></div><div class="ly_call_info">'+contant_name+'<br>'+tel+'</div></a></div>';
+										$(".ly_list").show();
+						               	$(".ly_searching").hide();
+						                $(".ly_list").append(d);
+									    $(".ly_list_item").click(function(e){
+										   if( e.target !== this ) 
+										       return;
+									         var ly_name=$(this).find('.ly_list_name').text();
+									         detailparser(ly_name);
+									    });
+									    $(".ly_list_pic,.ly_list_party,.ly_list_district").click(function(e){
+									         var ly_name=$(this).siblings('.ly_list_name').text();
+									         detailparser(ly_name);
+									    });
+									    $(".ly_list_name").click(function(e){
+									         var ly_name=$(this).text();
+									         detailparser(ly_name);
+									    });
+						            }
+						            }	  
+						        },
+								
+						        //如果連線失敗
+						        error: function() {
+						            alert("服務取得失敗");
+						        }
+						    });
+						//end json parser
+                    }
+                }
+            });
+}
+
+
+</script> 
+<script type="text/javascript">
+	function detailparser(ly_name) {
+		$( "#ly_detail_data" ).show( "slow" );
+                        	//start json parser
+							$.ajax({
+						        url: "data.json",
+						        crossDomain: true,  
+						        type: "GET",
+						        dataType: "json", 
+						       
+						        //如果連線成功        	   
+						        success: function(data) {			
+						            //原list中資料清除 				  
+						            $("#ly_detail_data .ly_detail_wrapper,#ly_detail_data .ly_detail_name,#ly_detail_data .ly_detail_party,#ly_detail_data .ly_detail_district,#ly_detail_data .ly_detail_pic").empty(); 
+									 
+						            if(data.length==0){
+						                alert("找不到任何資料");
+						                return;
+						            }
+									 //alert(document.getElementById("YourLocation").value);
+						            //依序加入取得之資料			 
+						            for(var i=0; i<data.length; i++){
+						            	if(data[i].name==ly_name){
+						                var name = data[i].name;
+						                var party = data[i].party;
+						                var ly_district = data[i].district;
+						                var pic=data[i].image;
+						                var ly_link=data[i].links.ly;
+						                var ly_profile = "<div class='ly_detail_name'><h3>" + name + "</h3></div><div class='ly_detail_party'>" + party  + "</div><div class='ly_detail_district'>"+ ly_district +"</div>";
+						                var ly_detail_pic="<div class='ly_detail_pic'><img src='"+pic+"'></div>";
+						                var link="<div class='ly_link'><a href='"+ly_link+"' target='_blank'>立委詳細資料</a></div>";
+						                $("#ly_detail_data").append(ly_detail_pic);
+						                $("#ly_detail_data").append(ly_profile);
+						                $("#ly_detail_data").append(link);
+										var address,contant_name;
+										    $.each(data[i].contacts, function(i, v) {
+										            address=v.address;
+										            tel=v.phone;
+										            contant_name=v.name;
+										            tel_link="'tel:"+v.phone+"'";
+													var d = '<a onclick="location.href=' + tel_link + '"><div class="ly_detail_contacts"><h4>'+contant_name+"</h4>"+tel+'<br>'+ address + '</div></a>';
+													
+									                $("#ly_detail_data .ly_detail_wrapper").append(d);
+										            return;
+
+										        });				
+
+						            }
+						            }	  
+						        },
+								
+						        //如果連線失敗
+						        error: function() {
+						            alert("服務取得失敗");
+						        }
+						    })
+						//end json parser
+						};
+
+</script>
+
+<style type="text/css">
+.switch_right a:link,a:visited,a:hover,a:active{
+	color:#333;
+}	
+</style>
+
+</head>
+
+<body>
+	<div class="bg"></div>
+<div class="container-fluid">
+	<div class="header_logo"><a onclick="$('html,body').animate({scrollTop: '0px'}, 400);    
+"><img src="img/logo.png"></a></div>
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="page-header">
+<a href="index.html"><div class="switch_left" style="background:#666;color:#fff;">定位查詢</div></a>
+<a href="choose.html"><div class="switch_right"style="background:#fff;">區域查詢</div></a>
+			</div>
+			
+			<div class="ly_list">
+			</div>
+			<div class="ly_searching"><h2>搜尋中</h2>若此畫面顯示過久，請確認網路是否連線或是否開啟定位功能。<br>或是您可以選擇分區搜尋。</div>
+		</div>
+	</div>
+</div>
+<div id="ly_detail_data">
+	<a onclick='$( "#ly_detail_data" ).hide( "slow" )'>
+		<div class="ly_detail_close">X</div>
+	</a>
+	<div class="ly_detail_wrapper"></div>
+</div>
+</body>
+</html>
