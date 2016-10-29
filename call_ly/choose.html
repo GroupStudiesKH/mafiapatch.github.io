@@ -55,7 +55,7 @@
 						            for(var i=0; i<data.length; i++){
 						            	if(data[i].county==document.getElementById("YourLocation").value){
 						               var name = data[i].name;
-						                var party = data[i].party;
+						                var party = data[i].elected_party;
 						                var ly_district = data[i].district;
 						                var pic=data[i].avatar;
 										var address,contant_name;
@@ -130,7 +130,7 @@
 						            for(var i=0; i<data.length; i++){
 						            	if(data[i].name==ly_name){
 						                var name = data[i].name;
-						                var party = data[i].party;
+						                var party = data[i].elected_party;
 						                var ly_district = data[i].district;
 						                var pic=data[i].image;
 						                var ly_link=data[i].links.ly;
