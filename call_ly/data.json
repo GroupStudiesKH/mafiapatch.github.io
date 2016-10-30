@@ -2384,6 +2384,7 @@
         "title": "立法委員",
         "experience": "高雄市副市長\n2009高雄世運組委會常務董事\n國家安全會議副秘書長\n總統府副秘書長\n行政院秘書長\n立法院(第5屆)委員\n台中縣副縣長\n臺北市環保局長\n澎湖縣政府機要秘書",
         "name": "劉世芳",
+        "district": "高雄市左營區、楠梓區",
         "term_end": {
             "date": "2020-01-31"
         },
@@ -2439,6 +2440,7 @@
         "title": "立法委員",
         "experience": "桃園航空城公司董事長\n台鹽董事長\n崇右技術學院副校長、教授\n立法院民主進步黨黨團總召\n第3、4屆立法委員\n第二屆國大代表\n民主進步黨中執委、中常委\n民進黨桃園縣黨部主委",
         "name": "鄭寶清",
+        "district": "<a href='https://zh.wikipedia.org/wiki/%E6%A1%83%E5%9C%92%E5%B8%82%E7%AC%AC%E5%9B%9B%E9%81%B8%E8%88%89%E5%8D%80' target='_blank'>桃園市第四選區</a>",
         "term_end": {
             "date": "2020-01-31"
         },
@@ -2461,43 +2463,6 @@
             3
         ],
         "avatar": "http://avatars.io/50a65bb26e293122b0000073/76b2b4ee9c59fbe1f9564d91966f8f03"
-    },
-    {
-        "remark": "自民國105年5月20日起辭去立法委員職務\n遞補委員：李麗芬",
-        "elected_party": "民進黨",
-        "committees": [],
-        "ad": 9,
-        "links": {
-            "ly": "http://www.ly.gov.tw/03_leg/0301_main/legIntro.action?lgno=00097&stage=9"
-        },
-        "title": "立法委員",
-        "gender": "女",
-        "image": "http://www.ly.gov.tw/upload/01_introduce/0103_leg/LGpicture/90097.jpg",
-        "identifiers": [
-            "鄭麗君"
-        ],
-        "experience": "第8屆立法委員\n行政院青年輔導委員會主任委員\n青平台基金會董事長(兼執行長)\n財團法人台灣智庫執行長\n國藝基金會董事\n東吳大學政治系兼任講師",
-        "name": "鄭麗君",
-        "term_end": {
-            "date": "2016-05-20",
-            "reason": "依台立人字第1050003490號函自105年05月20日辭去立法委員職務。",
-            "replacement": []
-        },
-        "former_names": "",
-        "term_start": "2016-02-01",
-        "in_office": false,
-        "uid": 1764,
-        "party": "民進黨",
-        "constituency": [
-            "proportional"
-        ],
-        "education": "台大哲學系學士\n法國巴黎第十大學政治、經濟、社會哲學碩士",
-        "caucus": "民進黨",
-        "ads": [
-            9,
-            8
-        ],
-        "avatar": "http://avatars.io/50a65bb26e293122b0000073/b3daa80c2ed57d24d7d19af69b994897"
     },
     {
         "elected_party": "民進黨",
@@ -2544,6 +2509,7 @@
         "title": "立法委員",
         "experience": "高雄市政府工務局機要秘書\n謝長廷高雄市長競選總部發言人兼政務部主任\n民主進步黨文宣部主任\n第6屆立法委員\n民主進步黨網路部主任\n民主進步黨組織部主任\n民主進步黨發言人",
         "name": "鄭運鵬",
+        "district": "<a href='https://zh.wikipedia.org/wiki/%E6%A1%83%E5%9C%92%E5%B8%82%E7%AC%AC%E4%B8%80%E9%81%B8%E8%88%89%E5%8D%80' target='_blank'>桃園市第一選區</a>",
         "term_end": {
             "date": "2020-01-31"
         },
