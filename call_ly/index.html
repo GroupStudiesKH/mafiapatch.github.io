@@ -34,143 +34,144 @@
   <script type="text/javascript" src="js/gears_init.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5FgW2v3XoTRQUBAFznTQbYqH8L6OwxyE&language=zh-TW&result_type=street_address&location_type=ROOFTOP"></script> 
 <script type="text/javascript">
-// 瀏覽器支援 HTML5 定位方法
-if (navigator.geolocation) {
- 
-    // HTML5 定位抓取
-    navigator.geolocation.getCurrentPosition(function(position) {
-        mapServiceProvider(position.coords.latitude, position.coords.longitude);
-    },
-    function(error) {
-        switch (error.code) {
-            case error.TIMEOUT:
-                alert('連線逾時');
-                break;
- 
-            case error.POSITION_UNAVAILABLE:
-                alert('無法取得定位');
-                break;
- 
-            case error.PERMISSION_DENIED://拒絕
-                alert('記得允許手機的GPS定位功能喔!');
-                break;
- 
-            case error.UNKNOWN_ERROR:
-                alert('不明的錯誤，請稍候再試');
-                break;
-        }
-    });
- 
-} else { // 不支援 HTML5 定位
- 
-    // 若支援 Google Gears
-    if (window.google && google.gears) {
-        try {
-              // 嘗試以 Gears 取得定位
-              var geo = google.gears.factory.create('beta.geolocation');
-              geo.getCurrentPosition(successCallback,errorCallback, { enableHighAccuracy: true,gearsRequestAddress: true });
-        } catch(e){
-              alert("定位失敗請稍候再試");
-        }
-    }else{
-        alert("記得允許手機的GPS定位功能喔!");
-    }
-}
- 
- 
-// 取得 Gears 定位發生錯誤
-function errorCallback(err) {
-    var msg = 'Error retrieving your location: ' + err.message;
-    alert(msg);
-}
- 
-// 成功取得 Gears 定位
-function successCallback(p) {
-      mapServiceProvider(p.latitude, p.longitude);
-}
- 
-// 顯示經緯度
-function mapServiceProvider(latitude, longitude) {
-      //alert("經緯度：" + latitude + ", " + longitude);
+$(document).ready(function(){
+	// 瀏覽器支援 HTML5 定位方法
+	if (navigator.geolocation) {
+	 
+	    // HTML5 定位抓取
+	    navigator.geolocation.getCurrentPosition(function(position) {
+	        mapServiceProvider(position.coords.latitude, position.coords.longitude);
+	    },
+	    function(error) {
+	        switch (error.code) {
+	            case error.TIMEOUT:
+	                alert('連線逾時');
+	                break;
+	 
+	            case error.POSITION_UNAVAILABLE:
+	                alert('無法取得定位');
+	                break;
+	 
+	            case error.PERMISSION_DENIED://拒絕
+	                alert('記得允許手機的GPS定位功能喔!');
+	                break;
+	 
+	            case error.UNKNOWN_ERROR:
+	                alert('不明的錯誤，請稍候再試');
+	                break;
+	        }
+	    });
+	 
+	} else { // 不支援 HTML5 定位
+	 
+	    // 若支援 Google Gears
+	    if (window.google && google.gears) {
+	        try {
+	              // 嘗試以 Gears 取得定位
+	              var geo = google.gears.factory.create('beta.geolocation');
+	              geo.getCurrentPosition(successCallback,errorCallback, { enableHighAccuracy: true,gearsRequestAddress: true });
+	        } catch(e){
+	              alert("定位失敗請稍候再試");
+	        }
+	    }else{
+	        alert("記得允許手機的GPS定位功能喔!");
+	    }
+	}
+	 
+	 
+	// 取得 Gears 定位發生錯誤
+	function errorCallback(err) {
+	    var msg = 'Error retrieving your location: ' + err.message;
+	    alert(msg);
+	}
+	 
+	// 成功取得 Gears 定位
+	function successCallback(p) {
+	      mapServiceProvider(p.latitude, p.longitude);
+	}
+	 
+	// 顯示經緯度
+	function mapServiceProvider(latitude, longitude) {
+	      //alert("經緯度：" + latitude + ", " + longitude);
 
-            var latlng = new google.maps.LatLng(latitude,longitude);
-            var geocoder = geocoder = new google.maps.Geocoder();
-            var district,county,formatted_address,format_county,county_if_viewport;
-            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-                    	formatted_address=results[0].formatted_address;
-                        district=results[0].address_components[3].long_name;
-                        county=results[0].address_components[4].long_name;
-                        county_if_viewport=results[0].address_components[5].long_name;
-                        format_county=county.replace("台灣", "");
-                        	//start json parser
-							$.ajax({
-						        url: "data.json",
-						        crossDomain: true,  
-						        type: "GET",
-						        dataType: "json", 
-						       
-						        //如果連線成功        	   
-						        success: function(data) {			
-						            //原list中資料清除 				  
-						            $(".ly_list").empty(); 
-									 
-						            if(data.length==0){
-						                alert("找不到任何資料");
-						                return;
-						            }
-									 //alert(county_if_viewport);
-						            //依序加入取得之資料			 
-						            for(var i=0; i<data.length; i++){
-						            	if(data[i].county==format_county || data[i].county==county_if_viewport){
-						                var name = data[i].name;
-						                var party = data[i].elected_party;
-						                var ly_district = data[i].district;
-						                var pic=data[i].image;
-										var address,contant_name;
-										    $.each(data[i].contacts, function(i, v) {
-										            address=v.address;
-										            tel=v.phone;
-										            tel_link="'tel:"+v.phone+"'";
-										            contant_name=v.name;
-										            return;
-										        });				
+	            var latlng = new google.maps.LatLng(latitude,longitude);
+	            var geocoder = geocoder = new google.maps.Geocoder();
+	            var district,county,formatted_address,format_county,county_if_viewport;
+	            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+	                if (status == google.maps.GeocoderStatus.OK) {
+	                    if (results[1]) {
+	                    	formatted_address=results[0].formatted_address;
+	                        district=results[0].address_components[3].long_name;
+	                        county=results[0].address_components[4].long_name;
+	                        county_if_viewport=results[0].address_components[5].long_name;
+	                        format_county=county.replace("台灣", "");
+	                        	//start json parser
+								$.ajax({
+							        url: "data.json",
+							        crossDomain: true,  
+							        type: "GET",
+							        dataType: "json", 
+							       
+							        //如果連線成功        	   
+							        success: function(data) {			
+							            //原list中資料清除 				  
+							            $(".ly_list").empty(); 
+										 
+							            if(data.length==0){
+							                alert("找不到任何資料");
+							                return;
+							            }
+										 //alert(county_if_viewport);
+							            //依序加入取得之資料			 
+							            for(var i=0; i<data.length; i++){
+							            	if(data[i].county==format_county || data[i].county==county_if_viewport){
+							                var name = data[i].name;
+							                var party = data[i].elected_party;
+							                var ly_district = data[i].district;
+							                var pic=data[i].image;
+											var address,contant_name;
+											    $.each(data[i].contacts, function(i, v) {
+											            address=v.address;
+											            tel=v.phone;
+											            tel_link="'tel:"+v.phone+"'";
+											            contant_name=v.name;
+											            return;
+											        });				
 
-										var d = '<div class="ly_list_item"><div class="ly_list_pic"><img src="'+pic+'"></div><div class="ly_list_name"><p>'+name+'</p></div><div class="ly_list_district">'+ly_district+'</div><div class="ly_list_party">'+party+'</div><a onclick="location.href=' + tel_link + '"><div class="ly_list_call"><img src="img/tel.png"></div><div class="ly_call_info">'+contant_name+'<br>'+tel+'</div></a></div>';
-										$(".ly_list").show();
-						               	$(".ly_searching").hide();
-						                $(".ly_list").append(d);
-									    $(".ly_list_item").click(function(e){
-										   if( e.target !== this ) 
-										       return;
-									         var ly_name=$(this).find('.ly_list_name').text();
-									         detailparser(ly_name);
-									    });
-									    $(".ly_list_pic,.ly_list_party,.ly_list_district").click(function(e){
-									         var ly_name=$(this).siblings('.ly_list_name').text();
-									         detailparser(ly_name);
-									    });
-									    $(".ly_list_name").click(function(e){
-									         var ly_name=$(this).text();
-									         detailparser(ly_name);
-									    });
-						            }
-						            }	  
-						        },
-								
-						        //如果連線失敗
-						        error: function() {
-						            alert("服務取得失敗");
-						        }
-						    });
-						//end json parser
-                    }
-                }
-            });
-}
+											var d = '<div class="ly_list_item"><div class="ly_list_pic"><img src="'+pic+'"></div><div class="ly_list_name"><p>'+name+'</p></div><div class="ly_list_district">'+ly_district+'</div><div class="ly_list_party">'+party+'</div><a onclick="location.href=' + tel_link + '"><div class="ly_list_call"><img src="img/tel.png"></div><div class="ly_call_info">'+contant_name+'<br>'+tel+'</div></a></div>';
+											$(".ly_list").show();
+							               	$(".ly_searching").hide();
+							                $(".ly_list").append(d);
+										    $(".ly_list_item").click(function(e){
+											   if( e.target !== this ) 
+											       return;
+										         var ly_name=$(this).find('.ly_list_name').text();
+										         detailparser(ly_name);
+										    });
+										    $(".ly_list_pic,.ly_list_party,.ly_list_district").click(function(e){
+										         var ly_name=$(this).siblings('.ly_list_name').text();
+										         detailparser(ly_name);
+										    });
+										    $(".ly_list_name").click(function(e){
+										         var ly_name=$(this).text();
+										         detailparser(ly_name);
+										    });
+							            }
+							            }	  
+							        },
+									
+							        //如果連線失敗
+							        error: function() {
+							            alert("服務取得失敗");
+							        }
+							    });
+							//end json parser
+	                    }
+	                }
+	            });
+	}
 
-
+});
 </script> 
 <script type="text/javascript">
 	function detailparser(ly_name) {
