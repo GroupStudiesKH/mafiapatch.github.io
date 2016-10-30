@@ -31,7 +31,6 @@
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
-  <script type="text/javascript" src="js/gears_init.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5FgW2v3XoTRQUBAFznTQbYqH8L6OwxyE&language=zh-TW&result_type=street_address&location_type=ROOFTOP"></script> 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -61,33 +60,6 @@ $(document).ready(function(){
 	                break;
 	        }
 	    });
-	 
-	} else { // 不支援 HTML5 定位
-	 
-	    // 若支援 Google Gears
-	    if (window.google && google.gears) {
-	        try {
-	              // 嘗試以 Gears 取得定位
-	              var geo = google.gears.factory.create('beta.geolocation');
-	              geo.getCurrentPosition(successCallback,errorCallback, { enableHighAccuracy: true,gearsRequestAddress: true });
-	        } catch(e){
-	              alert("定位失敗請稍候再試");
-	        }
-	    }else{
-	        alert("記得允許手機的GPS定位功能喔!");
-	    }
-	}
-	 
-	 
-	// 取得 Gears 定位發生錯誤
-	function errorCallback(err) {
-	    var msg = 'Error retrieving your location: ' + err.message;
-	    alert(msg);
-	}
-	 
-	// 成功取得 Gears 定位
-	function successCallback(p) {
-	      mapServiceProvider(p.latitude, p.longitude);
 	}
 	 
 	// 顯示經緯度
