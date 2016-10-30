@@ -213,6 +213,12 @@ body{
 	color: #545454;
 }
 
+.ly_list_name p{
+	width: 54%;
+    overflow: hidden;
+    height: 20px;
+}
+
 .ly_list_district{
 	top:50px;
 	left:10px;
