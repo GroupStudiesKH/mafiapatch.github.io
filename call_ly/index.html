@@ -31,123 +31,87 @@
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5FgW2v3XoTRQUBAFznTQbYqH8L6OwxyE&language=zh-TW&result_type=street_address&location_type=ROOFTOP"></script> 
-<script type="text/javascript">
-	// 瀏覽器支援 HTML5 定位方法
-	if (navigator.geolocation) {
-	 
-	    // HTML5 定位抓取
-	    navigator.geolocation.getCurrentPosition(function(position) {
-	        mapServiceProvider(position.coords.latitude, position.coords.longitude);
-	    },
-	    function(error) {
-	        switch (error.code) {
-	            case error.TIMEOUT:
-	                alert('連線逾時');
-	                break;
-	 
-	            case error.POSITION_UNAVAILABLE:
-	                alert('無法取得定位');
-	                break;
-	 
-	            case error.PERMISSION_DENIED://拒絕
-	                alert('記得允許手機的GPS定位功能喔!');
-	                break;
-	 
-	            case error.UNKNOWN_ERROR:
-	                alert('不明的錯誤，請稍候再試');
-	                break;
-	        }
-	    });
-	}
-	 
-	// 顯示經緯度
-	function mapServiceProvider(latitude, longitude) {
-	      //alert("經緯度：" + latitude + ", " + longitude);
+  <script type="text/javascript">
 
-	            var latlng = new google.maps.LatLng(latitude,longitude);
-	            var geocoder = geocoder = new google.maps.Geocoder();
-	            var district,county,formatted_address,format_county,county_if_viewport;
-	            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-	                if (status == google.maps.GeocoderStatus.OK) {
-	                    if (results[1]) {
-	                    	formatted_address=results[0].formatted_address;
-	                        district=results[0].address_components[3].long_name;
-	                        county=results[0].address_components[4].long_name;
-	                        county_if_viewport=results[0].address_components[5].long_name;
-	                        format_county=county.replace("台灣", "");
-	                        	//start json parser
-								$.ajax({
-							        url: "data.json",
-							        crossDomain: true,  
-							        type: "GET",
-							        dataType: "json", 
-							       
-							        //如果連線成功        	   
-							        success: function(data) {			
-							            //原list中資料清除 				  
-							            $(".ly_list").empty(); 
-										 
-							            if(data.length==0){
-							                alert("找不到任何資料");
-							                return;
-							            }
-										 //alert(county_if_viewport);
-							            //依序加入取得之資料			 
-							            for(var i=0; i<data.length; i++){
-							            	if(data[i].county==format_county || data[i].county==county_if_viewport){
-							                var name = data[i].name;
-							                var party = data[i].elected_party;
-							                var ly_district = data[i].district;
-							                var pic=data[i].image;
-											var address,contant_name;
-											    $.each(data[i].contacts, function(i, v) {
-											            address=v.address;
-											            tel=v.phone;
-											            tel_link="'tel:"+v.phone+"'";
-											            contant_name=v.name;
-											            return;
-											        });				
+					function dataparser() {
+                        	//start json parser
+							$.ajax({
+						        url: "https://unnamed.taipei/call_ly/data.json",
+						        crossDomain: true,  
+						        type: "GET",
+						        dataType: "json", 
+						       
+						        //如果連線成功        	   
+						        success: function(data) {			
+						            //原list中資料清除 				  
+						            $(".ly_list").empty(); 
+									 
+						            if(data.length==0){
+						                alert("找不到任何資料");
+						                return;
+						            }
+									 
+						            //依序加入取得之資料			 
+						            for(var i=0; i<data.length; i++){
+						            	if(data[i].elected_party==document.getElementById("elected_party").value){
+						               var name = data[i].name;
+						                var party = data[i].elected_party;
+						                var ly_district = data[i].district;
+						                var pic=data[i].image;
+										var address,contant_name;
+										    $.each(data[i].contacts, function(i, v) {
+										            address=v.address;
+										            tel=v.phone;
+										            tel_link="'tel:"+v.phone+"'";
+										            contant_name=v.name;
+										            return;
+										        });				
 
-											var d = '<div class="ly_list_item"><div class="ly_list_pic"><img src="'+pic+'"></div><div class="ly_list_name"><p>'+name+'</p></div><div class="ly_list_district">'+ly_district+'</div><div class="ly_list_party">'+party+'</div><a onclick="location.href=' + tel_link + '"><div class="ly_list_call"><img src="img/tel.png"></div><div class="ly_call_info">'+contant_name+'<br>'+tel+'</div></a></div>';
-											$(".ly_list").show();
-							               	$(".ly_searching").hide();
-							                $(".ly_list").append(d);
-										    $(".ly_list_item").click(function(e){
-											   if( e.target !== this ) 
-											       return;
-										         var ly_name=$(this).find('.ly_list_name').text();
-										         detailparser(ly_name);
-										    });
-										    $(".ly_list_pic,.ly_list_party,.ly_list_district").click(function(e){
-										         var ly_name=$(this).siblings('.ly_list_name').text();
-										         detailparser(ly_name);
-										    });
-										    $(".ly_list_name").click(function(e){
-										         var ly_name=$(this).text();
-										         detailparser(ly_name);
-										    });
-							            }
-							            }	  
-							        },
-									
-							        //如果連線失敗
-							        error: function() {
-							            alert("服務取得失敗");
-							        }
-							    });
-							//end json parser
-	                    }
-	                }
-	            });
-	}
+										var d = '<div class="ly_list_item"><div class="ly_list_pic"><img src="'+pic+'"></div><div class="ly_list_name"><p>'+name+'</p></div><div class="ly_list_district">'+ly_district+'</div><div class="ly_list_party">'+party+'</div><a onclick="location.href=' + tel_link + '"><div class="ly_list_call"><img src="img/tel.png"></div><div class="ly_call_info">'+contant_name+'<br>'+tel+'</div></a></div>';
+										
+						                $(".ly_list").show();
+						               	$(".ly_searching").hide();
+						                $(".ly_list").append(d);
+									    $(".ly_list_item").click(function(e){
+										   if( e.target !== this ) 
+										       return;
+									         var ly_name=$(this).find('.ly_list_name').text();
+									         detailparser(ly_name);
+									    });
+									    $(".ly_list_pic,.ly_list_party,.ly_list_district").click(function(e){
+									         var ly_name=$(this).siblings('.ly_list_name').text();
+									         detailparser(ly_name);
+									    });
+									    $(".ly_list_name").click(function(e){
+									         var ly_name=$(this).text();
+									         detailparser(ly_name);
+									    });
+						            }
+						            }	  
+						        },
+								
+						        //如果連線失敗
+						        error: function() {
+						            alert("服務取得失敗");
+						        }
+						    })
+						//end json parser
+						};
 </script> 
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		dataparser();
+	});
+</script>
+
 <script type="text/javascript">
 	function detailparser(ly_name) {
 		$( "#ly_detail_data" ).show( "slow" );
+
                         	//start json parser
 							$.ajax({
-						        url: "data.json",
+						        url: "https://unnamed.taipei/call_ly/data.json",
 						        crossDomain: true,  
 						        type: "GET",
 						        dataType: "json", 
@@ -156,7 +120,7 @@
 						        success: function(data) {			
 						            //原list中資料清除 				  
 						            $("#ly_detail_data .ly_detail_wrapper,#ly_detail_data .ly_detail_name,#ly_detail_data .ly_detail_party,#ly_detail_data .ly_detail_district,#ly_detail_data .ly_detail_pic").empty(); 
-									 
+									
 						            if(data.length==0){
 						                alert("找不到任何資料");
 						                return;
@@ -170,7 +134,7 @@
 						                var ly_district = data[i].district;
 						                var pic=data[i].image;
 						                var ly_link=data[i].links.ly;
-						                var ly_profile = "<div class='ly_detail_name'><h3>" + name + "</h3></div><div class='ly_detail_party'>" + party  + "</div><div class='ly_detail_district'>"+ ly_district +"</div>";
+						                 var ly_profile = "<div class='ly_detail_name'><h3>" + name + "</h3></div><div class='ly_detail_party'>" + party  + "</div><div class='ly_detail_district'>"+ ly_district +"</div>";
 						                var ly_detail_pic="<div class='ly_detail_pic'><img src='"+pic+"'></div>";
 						                var link="<div class='ly_link'><a href='"+ly_link+"' target='_blank'>立委詳細資料</a></div>";
 						                $("#ly_detail_data").append(ly_detail_pic);
@@ -186,8 +150,8 @@
 													
 									                $("#ly_detail_data .ly_detail_wrapper").append(d);
 										            return;
-
 										        });				
+
 
 						            }
 						            }	  
@@ -200,15 +164,13 @@
 						    })
 						//end json parser
 						};
-
 </script>
 
 <style type="text/css">
-.switch_right a:link,a:visited,a:hover,a:active{
+.switch_left a:link,a:visited,a:hover,a:active{
 	color:#333;
 }	
 </style>
-
 </head>
 
 <body>
@@ -219,13 +181,22 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="page-header">
-<a href="index.html"><div class="switch_left" style="background:#666;color:#fff;">定位查詢</div></a>
-<a href="choose.html"><div class="switch_right"style="background:#fff;">區域查詢</div></a>
+				<a href="index.html"><div class="switch_left" style="background:#666;color:#fff;">黨派查詢</div></a>
+				<a href="choose.html"><div class="switch_right"style="background:#fff;">區域查詢</div></a>					<form>
+					<select id="elected_party" onchange="dataparser()">
+						<option value="民進黨">民進黨</option>
+						<option value="時代力量">時代力量</option>
+						<option value="國民黨">國民黨</option>
+						<option value="親民黨">親民黨</option>
+						<option value="無黨籍">無黨籍</option>
+						<option value="無黨團結聯盟">無黨團結聯盟</option>
+					</select>
+					</form>
 			</div>
 			
 			<div class="ly_list">
 			</div>
-			<div class="ly_searching"><h2>搜尋中</h2>若此畫面顯示過久，請確認網路是否連線或是否開啟定位功能。<br>或是您可以選擇分區搜尋。</div>
+			<div class="ly_searching"><h2>載入中</h2></div>
 		</div>
 	</div>
 </div>
