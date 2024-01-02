@@ -20,7 +20,7 @@ $(document).ready(function() {
 	});
 
 	$('#person_list .mafia').click(function() {
-		window.location.href = 'mafia.html';
+		window.location.href = 'cch.html';
 	});
 
 	$('#person_list .bird').click(function() {
