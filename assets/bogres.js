@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-	$('.badboss-info .back-btn').click(function() {
-		$('.badboss-info').transition({
+	$('.bogres-info .back-btn').click(function() {
+		$('.bogres-info').transition({
 		    animation : 'scale',
 		    onComplete  : function() {
 		      $('.project_main').transition('scale');
@@ -10,17 +10,17 @@ $(document).ready(function() {
 		  });
 	});
 
-	$('.card.badboss').click(function() {
+	$('.card.bogres').click(function() {
 		$('.project_main').transition({
 		    animation : 'scale',
 		    onComplete  : function() {
 		      $('.project_main').removeClass("stackable");
-		      $('.badboss-info').transition('scale');
+		      $('.bogres-info').transition('scale');
 		    }
 		  });
 	});
 
-	var $imgs = $('.badboss-info .card .project-image img'), current = 0;
+	var $imgs = $('.bogres-info .card .project-image img'), current = 0;
 	    
     var nextImage = function() {
         if (current >= $imgs.length){current = 0;};
