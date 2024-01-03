@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	$('.activity-info .back-btn').click(function() {
-		$('.youngbeauty-info').transition({
+		$('.activity-info').transition({
 		    animation : 'scale',
 		    onComplete  : function() {
 		      $('.project_main').transition('scale');
