@@ -2,6 +2,10 @@ body{
 	font-family: "微軟正黑體","STHeiti",Lato, sans-serif;
 }
 
+.logo.mobile{
+	display: none;
+}
+
 .left-logo{
 	text-align: center;
 	width: 18.75%;
@@ -175,9 +179,15 @@ span.project_description{
 	font-size: 13px;
 }
 
-
-
 @media (max-width: 991px) {
+	.logo{
+		display: none;
+	}
+
+	.logo.mobile{
+		display: block;
+	}
+
 	#person_intro{
 		padding: 0 15px 0 15px;
 	}
