@@ -4,11 +4,6 @@ $(document).ready(function() {
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
 
-	$('.person').click(function() {
-		$('.person .gray_mask').transition('fade left');
-		window.location.href = 'bird.html';
-	});
-
 	$('.profolio').click(function() {
 		$('.person .gray_mask').transition('fade left');
 		window.location.href = 'project.html';
@@ -16,15 +11,11 @@ $(document).ready(function() {
 
 	$('.contact').click(function() {
 		$('.person .gray_mask').transition('fade left');
-		window.location.href = 'contact.html';
+		window.open('https://forms.gle/pyYdvsa5odN5d8Sc9', '_blank');
 	});
 
 	$('#person_list .mafia').click(function() {
 		window.location.href = 'cch.html';
-	});
-
-	$('#person_list .bird').click(function() {
-		window.location.href = 'bird.html';
 	});
 
 	$('.choose_person').popup();
