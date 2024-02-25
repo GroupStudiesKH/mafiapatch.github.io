@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var host = "unnamed.taipei";
+    var host = "dev.hanyuan.info";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
 
